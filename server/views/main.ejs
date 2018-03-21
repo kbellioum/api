@@ -2,10 +2,34 @@
 <%- include navbar.ejs %>
 
 <div class="container">
-  <h1>Hello <%= currentUser.username %> </h1>
-  <p>
-    <%= projects %>
-  </p>
+  <h1>Projects </h1>
+
+          <table class="table table-hover table-striped">
+            <tr>
+              <th>Id</th>
+              <th>Source</th>
+              <th>Link</th>
+              <th>Title</th>
+              <th>Category</th>
+              <th>Action</th>
+            </tr>
+            <tbody>
+              <% projects.forEach(function(item){ %>
+                <tr>
+                  <td><%=  item.id %></td>
+                  <td><%=  item.source %></td>
+                  <td><%=  item.link %></td>
+                  <td><%=  item.title %></td>
+                  <td><%=  item.category %></td>
+                  <td><a href="/edit/<%= item._id %>"><span class="glyphicon glyphicon-pencil" aria-hidden="false"></span></a></td>
+                </tr>
+              <%})%>
+            </tbody>
+
+          </table>
+
+
+
 </div>
 
 

@@ -15,23 +15,13 @@ module.exports = function(app) {
     app.get('/login', controllers.users.getLogin);
 
     app.get('/main', auth.isAuthenticated, function (req, res) {
-      var tst = new Test({
-        name: 'TestName'
-      });
-      tst.save()
-        .then(() => {
-          Project.find({})
-            .then((user) => {
-              res.render('main', {currentUser: req.user, projects: user});
-            })
-            .catch((err) => {
-              console.log(err)
-            })
+      Project.find({})
+        .then((user) => {
+          res.render('main', {currentUser: req.user, projects: user});
         })
         .catch((err) => {
           console.log(err)
         })
-
     });
 
     app.get('/', function (req, res) {
